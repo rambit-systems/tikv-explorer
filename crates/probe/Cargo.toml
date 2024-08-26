@@ -1,0 +1,11 @@
+[package]
+name = "probe"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+values = { path = "../values" }
+
+miette = "7.2.0"
+serde = { version = "1.0.209", features = ["derive"] }
+tikv-client = { version = "0.3.0", default-features = false }

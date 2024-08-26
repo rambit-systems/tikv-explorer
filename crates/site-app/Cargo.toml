@@ -11,10 +11,14 @@ leptos_meta.workspace = true
 leptos_router.workspace = true
 leptos_axum = { workspace = true, optional = true }
 
+probe = { path = "../probe", optional = true }
+values = { path = "../values" }
+serde = "1.0.209"
+
 [features]
 default = []
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
 ssr = [
   "leptos/ssr", "leptos/tracing", "leptos_meta/ssr", "leptos_router/ssr",
-  "dep:leptos_axum",
+  "dep:leptos_axum", "dep:probe"
 ]
