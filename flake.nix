@@ -191,7 +191,7 @@
           export LEPTOS_ENV=PROD
           # export LEPTOS_HASH_FILES=true
           cd ${site-server}/bin
-          exec site-server "$@"
+          ./site-server "$@"
         '';
       
       in {
