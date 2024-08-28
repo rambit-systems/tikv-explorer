@@ -1,5 +1,3 @@
-use std::fmt;
-
 use serde::{Deserialize, Serialize};
 
 /// An enum of all the ways we can interpret values.
@@ -11,15 +9,22 @@ pub enum Value {
   Bytes(Vec<u8>),
 }
 
-impl fmt::Debug for Value {
-  fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+impl Value {
+  pub fn pretty(&self) -> String {
     match self {
-      Value::MessagePack(v) => {
-        write!(f, "{}", serde_json::to_string(v).unwrap())
-      }
-      Value::Json(v) => write!(f, "{}", serde_json::to_string(v).unwrap()),
-      Value::String(s) => write!(f, "\"{}\"", s),
-      Value::Bytes(b) => write!(f, "{:#x}", hex_fmt::HexFmt(b)),
+      Value::MessagePack(v) => serde_json::to_string(v).unwrap(),
+      Value::Json(v) => serde_json::to_string(v).unwrap(),
+      Value::String(s) => format!("\"{}\"", s),
+      Value::Bytes(b) => format!("{:#x}", hex_fmt::HexFmt(b)),
+    }
+  }
+
+  pub fn pretty_long(&self) -> String {
+    match self {
+      Value::MessagePack(v) => serde_json::to_string_pretty(v).unwrap(),
+      Value::Json(v) => serde_json::to_string_pretty(v).unwrap(),
+      Value::String(s) => format!("\"{}\"", s),
+      Value::Bytes(b) => format!("{:#x}", hex_fmt::HexFmt(b)),
     }
   }
 }

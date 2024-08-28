@@ -14,11 +14,14 @@ leptos_axum = { workspace = true, optional = true }
 probe = { path = "../probe", optional = true }
 values = { path = "../values" }
 serde = "1.0.209"
+leptos-use = { git = "https://github.com/Synphonyte/leptos-use.git", branch = "leptos-0.7" }
+web-sys = { version = "0.3.70", features = ["Clipboard"] }
+wasm-bindgen-futures = "0.4.43"
 
 [features]
 default = []
-hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
+hydrate = ["leptos/hydrate"]
 ssr = [
   "leptos/ssr", "leptos/tracing", "leptos_meta/ssr", "leptos_router/ssr",
-  "dep:leptos_axum", "dep:probe"
+  "dep:leptos_axum", "dep:probe", "leptos-use/ssr",
 ]

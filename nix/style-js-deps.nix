@@ -10,7 +10,7 @@
 
     style-js-packages-yarn-registry = pkgs.fetchYarnDeps {
       yarnLock = source-root + "/crates/site-app/style/tailwind/yarn.lock";
-      hash = "sha256-oZgyP0hTU9bxszOVg3Bmiu6yos2d2Inc1Do8To4z8GQ=";
+      hash = "sha256-r1GoK+DlcSj5DQxVbqZv2WLN3RoBJdRu2S7xQ7vMtqM=";
       # hash = "";
     };
   in
