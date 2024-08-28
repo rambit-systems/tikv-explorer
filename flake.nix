@@ -179,6 +179,20 @@
             ];
           };
         };
+
+        # wrap the server binary in a script to set the environment variables
+        wrapped-site-server = pkgs.writeScriptBin "site-server" ''
+          #!/usr/bin/env bash
+          export LEPTOS_OUTPUT_NAME=${leptos-options.name}
+          export LEPTOS_SITE_ROOT=${leptos-options.name}
+          export LEPTOS_SITE_PKG_DIR=${leptos-options.site-pkg-dir}
+          export LEPTOS_SITE_ADDR=0.0.0.0:3000
+          export LEPTOS_RELOAD_PORT=${builtins.toString leptos-options.reload-port}
+          export LEPTOS_ENV=PROD
+          # export LEPTOS_HASH_FILES=true
+          cd ${site-server}/bin
+          exec site-server "$@"
+        '';
       
       in {
         checks = {
@@ -229,8 +243,8 @@
         };
 
         packages = {
-          default = site-server;
-          server = site-server;
+          default = wrapped-site-server;
+          server = wrapped-site-server;
           container = site-server-container;
         };
         
