@@ -186,12 +186,12 @@ pub async fn get_pairs(
 ) -> Result<Vec<(values::Value, values::Value)>, ServerFnError> {
   let client = probe::Client::new(vec!["127.0.0.1:2379".to_string()])
     .await
-    .map_err(|e| ServerFnError::new(e.to_string()))?;
+    .map_err(|e| ServerFnError::new(format!("{e:?}")))?;
 
   let pairs = client
     .get_all()
     .await
-    .map_err(|e| ServerFnError::new(e.to_string()))?;
+    .map_err(|e| ServerFnError::new(format!("{e:?}")))?;
 
   Ok(pairs)
 }
