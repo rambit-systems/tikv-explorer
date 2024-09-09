@@ -2,7 +2,11 @@
 module.exports = {
   content: [ "./crates/**/*.rs" ],
   theme: {
-    extend: {},
+    extend: {
+      transitionProperty: {
+        'height': 'height',
+      },
+    },
   },
   plugins: [require("rippleui")],
 }
