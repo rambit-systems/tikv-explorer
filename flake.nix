@@ -156,7 +156,7 @@
         });
 
         site-server-container = pkgs.dockerTools.buildLayeredImage {
-          name = leptos-options.bin-package;
+          name = "tikv-explorer";
           tag = "latest";
           contents = [ site-server pkgs.cacert ];
           config = {
